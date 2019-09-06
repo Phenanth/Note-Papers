@@ -139,9 +139,78 @@
 
 同样也尝试了使用`PPO`作为`SL`网络算法的传统`NFSP`算法，只不过在其训练函数中完全忽略`SL_Actor`和`SL`训练算法，以及所有的代理行为选择时都将参考`RL_Actor`训练函数。（这两个函数见`pdf p4`）
 
-## 5 参数设置
+## 5 实际运行
 
+### 5.1 参数设置
 
+> 见`pdf p5`，跳过，讲了同时运行的代理用的网络是共用的，同时有512游戏进程在运行，增强网络和监督学习网络用的`CNN`的设置，	激活函数参数设置，概率分布在经过激活后在全连接网络中经过处理，再经过`softmax`之后的输出，模型优化用的`clipping`方法（前面提到过）等等设置。
+
+### 5.2 `SP`、`NFSP`以及`Mini-RTS`介绍
+
+游戏包含两种模式：简单和突袭，人玩的胜率分别是90%和50%。
+
+由于游戏特性，一般都能够计算纳什平衡。但是因为`Mini-RTS`的复杂性，我们只能用`Local Best Response Teqnique, LBR`来计算纳什平衡的近似下限（无法计算上限）。
+
+此次工作中只基于和电脑对手的胜负情况进行纳什平衡的评估，每次评估最少经过1000次游戏。
+
+实验总结：
+
+- `PPO`的`SP`：简单模式下的最高胜率，突袭模式下远无法达到纳什平衡。用突袭模式训练的代理无法应对简单模式。
+- `NFSP`：随着经历游戏把数，胜率稳步提升。虽然胜率会比相应的`NFSP`低，但是会得到不容易过拟合的更少开发的策略。
+- 纯`SP`：在简单模式比`NFSP`好，在突袭模式则一样。训练过程比`NFSP`快。有无法收敛的风险但是在此次实验中没有体现出来。收敛了就一定是纳什平衡。
+
+另外，不总结同时使用两种模式训练的情况。因为我们想要将另一种模式作为测试的时候的【全新对手】来对待。
+
+最终训练结果，最好的代理也只有65%胜率。因为游戏一开始的资源都是随机的，而信息又不完整，不知道对手是否会进行攻击，那么如果代理一开始没有建造攻击者，它就无从进行防御。就连是使用了一百万局游戏进行训练的`PPO`代理，在面对与他是老对手的同一个电脑AI时，仍然会输掉29%的局数。
+
+### 5.3 具体分析训练结果代理
+
+> 描述了两个代理比较智能的场景，前两段没怎么看懂，贴在下面了
+>
+> We further analyze the acquired agents. To evaluate how exploitable
+> the agent is, we train another `PPO` agent against the
+> target agent. If the `PPO` algorithm converges to its optimal
+> strategy, the win rate of the agent is equal to the exploitability
+> of the target agent in imperfect recall settings.
+> The results are shown in Table 1. Compared with other
+> agents, the self-play agents are less exploitable, and do not
+> lose over 50 percent against the `PPO` algorithm. This result
+> suggests that the obtained agents are not exploitable by
+> strategies that do not use the past histories of observations.
+
+重点是此次的代理都是在无先验知识或者是预先注入了规则的`AI`帮助下完成的训练，所以能总结出来这些规则已经很厉害了。
+
+### 5.4 使用纯`SF`对`NFSP`预训练
+
+> `pdf p7`里面左边靠上有一部分应该是用来解释为什么可以预训练的。
+
+结合`SF`训练快和`NFSP`能够收敛的特性。
+
+一开始对`NFSP`的`RL`预训练，但是因为`RL`要给没被预训练过的`SL`提供预训练策略，实际的计算完全没有被加速。后来用`SP`同时对`SL`和`RL`进行训练，得到的结果如图`pdf p7`的描述和图。
+
+结论是可以用效率高但是不稳定的`SP`进行预训练。
 
 ## 6 总结以及日后工作
 
+贡献：
+
+- `NFSP`可以和`policy-based reinforcement learning`结合，且可以用在`RTS`游戏上。
+- 可以用`SF`对`NFSP`预训练以达到提高模型规模的目的
+  - 训练高效
+  - 保证收敛
+
+日后工作：
+
+- 为什么`PPO`的`SP`比`NFSP`胜率高
+
+- 训练过程非完美回想，不符合`FSP`的要求（
+
+可能会加入`recurrent neural networks`作为`RL`组件的控制器，同时为了配合，也给`SL`的储存池加入这样的机制）
+
+> 感觉从见到训练效果不佳开始展开的一系列尝试可以作为参考：
+>
+> 1. 给目标网络（`NFSP`）构造一个网络作为对手（`SP`）
+> 2. 给这个对手增加筹码，就是添加新的训练机制（`PPO`）
+> 3. 见到目标网络效果不佳，综合训练网络二者（预训练）提出新模型
+>
+> 等等。

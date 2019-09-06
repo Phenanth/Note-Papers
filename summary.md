@@ -63,5 +63,17 @@
 
 未来工作内容：可能会通过结合`MDN-RNN`，来进行随即状态转换的计算。本文中没有提到的使用一个网络来预测奖励的机制也有可能在日后工作中大放光彩。
 
-## Neural Fictitious Self-Play on ELF Mini-RTS（未完成）
+## Neural Fictitious Self-Play on ELF Mini-RTS
 
+- `NFSP`可以和`policy-based reinforcement learning`结合，且可以用在`RTS`游戏上。
+- 可以用`SF`对`NFSP`预训练以达到提高模型规模的目的
+  - 训练高效
+  - 保证收敛
+
+> 感觉从见到训练效果不佳开始展开的一系列尝试可以作为参考：
+>
+> 1. 给目标网络（`NFSP`）构造一个网络作为对手（`SP`）
+> 2. 给这个对手增加筹码，就是添加新的训练机制（`PPO`）
+> 3. 见到目标网络效果不佳，综合训练网络二者（预训练）提出新模型
+>
+> 等等。
