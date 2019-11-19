@@ -1,0 +1,74 @@
+BN且SP
+10
+
+SP课题条件下的新技术参考
+1
+8（非BN相关，好奇观点）
+11
+
+商业或重点课题但非SP课题下的BN相关技术参考
+2
+3
+6（只是有Bayesian因素）
+9（交通）
+
+BN原理相关参考
+4
+5
+12
+13（是否能胜任风险规划）
+14
+
+跑题
+7
+
+
+
+1
+看中了应用落脚点是股票市场预测（Stock Market Forecasting），技术用的是BRANN（Bayesian Regularized Artificial Neural Network），可以在结合新技术的时候进行一定说明
+
+2
+看到了同样有BN（Bayesian Networks），但是是BBN（Bayesian Belief Networks），想知道BN有多少能够扩展的余地，希望能够用于结合新技术
+课题是分析lean manufacturing effect有关商业表现（Bussinesss Performance）
+
+3
+DBN（Dynamic Bayesian Networks），课题是分析供应链，理由同上
+
+4
+BN在环境建模（Environmental Modelling）的优势和挑战，是关于BN应用的补充材料
+课题是关于环境保护相关的，和原生方向差距太大估计不会使用，但是里面的实践方法和对于BN的观点应该是在一定角度可以作为借鉴的，偏向理论化
+
+5
+在环境建模课题使用BN，基本同上，应该会更偏向应用化
+
+6
+Bayesian Approach，课题是股票评估模型不确定性（Stock Assessment Model Uncertainty），
+看中其是与股票评估有关课题，但是只是使用了Bayesian Approch，也可以看作是结合新技术的铺垫
+
+7
+跑题论文，因为教授做过市场分析对股票的影响这个方向，所以找了一篇看起来是这个意思的论文，不看也行
+课题应该是使用情绪分析（Sentiment Analysis）对社交媒体上的话题建模并进行股票市场的分析预测，技术方向还没有留意
+
+8
+这篇论文的先行研究里面提到了北教授2012年的一篇论文，他们对BN在SP（Stock Prediction）的应用持怀疑态度，想要了解他们认为的观点是什么
+使用的技术还没看，形容是A causal feature selection algorithm，课题就是SP
+
+9
+BN，课题是交通流量预测，感觉和教授的另一个研究方向比较相似就写下了，但是这是2006年的论文了所以估计没什么用了，可以不看
+
+10
+BN，SP，2018年的，可以作为近年研究成果看看
+
+11
+股票市场动向预测，用的是动态贝叶斯因子图（Dynamical Bayesian Factor Graph），课题重合度高，可以看为是结合新技术的铺垫（需要查一下技术是什么
+
+12
+用了很多种分类器（其中包含BN）来检测生物技术产业中的盈亏管理是否存在风险？的应用论文
+可以作为横向对比的先行研究讲述同样作为用来检测风险的分类器都存在什么优缺点
+
+13
+BN，课题是预测破产，副标题是一些方法论的问题提出（Some methodological issues）
+好奇BN能否胜任风险规划问题，看看他说的Issues是指什么。
+
+14
+BN，是什么Risk Return，原因和上面差不多
