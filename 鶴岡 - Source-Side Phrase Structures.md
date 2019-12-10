@@ -1,5 +1,3 @@
-
-
 # Source-Side Phrase Structures
 
 > 省略关于模型评估的部分，`3`是提出的模型的重点部分。
