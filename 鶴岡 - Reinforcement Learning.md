@@ -118,7 +118,7 @@ $V'$的实际表示形式是一个稀疏二元矩阵$M_X \in R^{K \times |V|}$�
 [^2]: 动作选择对应的是从$p(y | y < t), X = softmax(W_ps_t + b_p)$ 和$p(y|y<t, X)=softmax(W_ph_t + b_p)$中对目标词进行随机取样
 [^3]: 状态转换指的是RNN在时序中的迭代$h_t = RNN(h_{t-1}, e(y_{t-1}), s_{t-1})$
 
-### 3 Taraget Vocabulary Prediction
+### 3 Target Vocabulary Prediction
 
 #### 3.1 Input Representations
 

@@ -33,6 +33,15 @@ http://cl.sd.tmu.ac.jp/
 
 - 首大，日语与英语学习者作文订正相关，[链接](http://cl.sd.tmu.ac.jp/~komachi/docs/enlp.html)
 - 筑大，チュウ太ツール，[链接](http://language.tiu.ac.jp/about.html#papers)
+- 技术参考
+  - 实验室
+    - ` deep learning `
+    - ` compositional semantics `
+  - 前人
+    - `Corpus Augmentation`
+    - `Hierarchical Phrase-based Statistical Machine Translation`
+
+
 
 ## 东工大
 
